@@ -39,6 +39,7 @@ class ItaliaViewController: UIViewController {
         collectionView.register(ChartCollectionViewCell.self, forCellWithReuseIdentifier: ChartCollectionViewCell.cellIdentifier)
         collectionView.register(PulsanteCollectionViewCell.self, forCellWithReuseIdentifier: PulsanteCollectionViewCell.cellIdentifier)
         collectionView.register(PositiviCollectionViewCell.self, forCellWithReuseIdentifier: PositiviCollectionViewCell.cellIdentifier)
+        collectionView.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.cellIdentifier)
     }
     
 }
@@ -46,7 +47,7 @@ class ItaliaViewController: UIViewController {
 extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,6 +64,12 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 return 9
             }
             return 0
+        } else if(section == 3) {
+            if(Model.shared.getItaData().last!.note == "") {
+                return 0
+            }
+            
+            return 1
         } else {
             return 1
         }
@@ -117,7 +124,11 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .positivi)
             }
             return cell
-            
+        } else if(indexPath.section == 3) {
+            //Note
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.cellIdentifier, for: indexPath) as! NoteCollectionViewCell
+            cell.setNote(text: Model.shared.getItaData().last!.note)
+            return cell
         } else {
             //Storico
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulsanteCollectionViewCell.cellIdentifier, for: indexPath) as! PulsanteCollectionViewCell
@@ -137,6 +148,8 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             } else {
                 return CGSize(width: collectionView.frame.width/2-20, height: 150)
             }
+        } else if(indexPath.section == 3) {
+            return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/3-20)
         } else {
             return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4-20)
         }
@@ -182,6 +195,14 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return CGSize(width: collectionView.frame.width, height: 30)
         }
         return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(indexPath.section==3){
+            print("Tap nota")
+        } else if(indexPath.section == 4){
+            print("Tap storico")
+        }
     }
 }
 

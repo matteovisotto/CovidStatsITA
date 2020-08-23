@@ -10,15 +10,17 @@ import Foundation
 import UIKit
 
 protocol DataDownloaderDelegate {
-    func didDownload(result: Bool, data: [Dictionary<String, Any>])
+    func didDownload(result: Bool, data: [Dictionary<String, Any>], forDownloadCase downloadCase: APIUrlsType)
 }
 
 class DataDownloader {
     private var downloadURL: String!
+    private var downloadType: APIUrlsType
     open var delegate: DataDownloaderDelegate? = nil
     private let urlSession = URLSession.shared
-    init(url: String) {
-        downloadURL = url
+    init(downloadType: APIUrlsType) {
+        self.downloadType = downloadType
+        downloadURL = APIUrls.getUrl(forApiType: downloadType)
     }
     
     func start() -> Void{
@@ -31,7 +33,7 @@ class DataDownloader {
 
             if (error != nil){
                 
-                    self.delegate?.didDownload(result: false, data: [])
+                self.delegate?.didDownload(result: false, data: [], forDownloadCase: self.downloadType)
                 
             }
             let httpResponse = response as? HTTPURLResponse
@@ -42,9 +44,9 @@ class DataDownloader {
                 
                     let myData = self.dataToJSON(data: data)
                 
-                self.delegate?.didDownload(result: true, data: myData)
+                self.delegate?.didDownload(result: true, data: myData, forDownloadCase: self.downloadType)
             } else {
-                self.delegate?.didDownload(result: false, data: [])
+                self.delegate?.didDownload(result: false, data: [], forDownloadCase: self.downloadType)
                 
             }
         }
@@ -65,7 +67,7 @@ class DataDownloader {
             } else if let jsonData = try JSONSerialization.jsonObject(with: data1, options: .allowFragments) as? Dictionary<String,Any> {
                 decodedData.append(jsonData)
             } else {
-                self.delegate?.didDownload(result: false, data: [])
+                self.delegate?.didDownload(result: false, data: [], forDownloadCase: self.downloadType)
             }
         } catch let error as NSError {
             print(error)

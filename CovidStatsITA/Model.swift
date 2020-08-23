@@ -45,6 +45,28 @@ class Model {
         calcolaPicco()
     }
     
+    public func addNoteToItaData(from dataDictionary: [Dictionary<String,Any>]){
+        for data in dataDictionary {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            let date = dateFormatter.date(from: data["data"] as! String)!
+            for ita in italia {
+                if(Calendar.current.compare(date, to: ita.date, toGranularity: .day) == .orderedSame && Calendar.current.compare(date, to: ita.date, toGranularity: .month) == .orderedSame && Calendar.current.compare(date, to: ita.date, toGranularity: .year) == .orderedSame) {
+                    ita.note = data["note"] as! String
+                }
+            }
+        }
+    }
+    
+    public func setRegioniData(from dataDictionary: [Dictionary<String,Any>]) {
+        
+    }
+    
+    public func setProvinceData(from dataDictionary: [Dictionary<String,Any>]) {
+        
+    }
+    
     private func calcolaPicco() {
         var picco = 0
         for value in italia {

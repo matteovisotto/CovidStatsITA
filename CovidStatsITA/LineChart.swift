@@ -300,7 +300,7 @@ open class LineChart: UIView {
      */
     fileprivate func drawDataDots(_ lineIndex: Int) {
         var dotLayers: [DotCALayer] = []
-        var data = self.dataStore[lineIndex]
+        let data = self.dataStore[lineIndex]
         
         for index in 0..<data.count {
             let xValue = self.x.scale(CGFloat(index)) + x.axis.inset - dots.outerRadius/2
@@ -390,7 +390,7 @@ open class LineChart: UIView {
      */
     fileprivate func drawLine(_ lineIndex: Int) {
         
-        var data = self.dataStore[lineIndex]
+        let data = self.dataStore[lineIndex]
         let path = UIBezierPath()
         
         var xValue = self.x.scale(0) + x.axis.inset
@@ -430,7 +430,7 @@ open class LineChart: UIView {
      */
     fileprivate func drawAreaBeneathLineChart(_ lineIndex: Int) {
         
-        var data = self.dataStore[lineIndex]
+        let data = self.dataStore[lineIndex]
         let path = UIBezierPath()
         
         colors[lineIndex].withAlphaComponent(0.2).setFill()
@@ -646,7 +646,7 @@ open class LinearScale {
     }
     
     fileprivate func scale_linearTickRange(_ domain: [CGFloat], m: Int) -> (CGFloat, CGFloat, CGFloat) {
-        var extent = scaleExtent(domain)
+        let extent = scaleExtent(domain)
         let span = extent[1] - extent[0]
         var step = CGFloat(pow(10, floor(log(Double(span) / Double(m)) / M_LN10)))
         let err = CGFloat(m) / span * step
@@ -682,7 +682,7 @@ open class LinearScale {
     }
     
     fileprivate func uninterpolate(_ a: CGFloat, b: CGFloat) -> (_ c: CGFloat) -> CGFloat {
-        var diff = b - a
+        let diff = b - a
         var re = diff != 0 ? 1 / diff : 0
         func f(_ c: CGFloat) -> CGFloat {
             return (c - a) * re

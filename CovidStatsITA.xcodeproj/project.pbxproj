@@ -29,6 +29,7 @@
 		6666200524F2AD30008ED9EC /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666200424F2AD30008ED9EC /* DataDownloader.swift */; };
 		6666200824F2BDFB008ED9EC /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666200724F2BDFB008ED9EC /* LineChart.swift */; };
 		6666200A24F2C16D008ED9EC /* CollectionViewFooterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666200924F2C16D008ED9EC /* CollectionViewFooterReusableView.swift */; };
+		6666200C24F2D21F008ED9EC /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666200B24F2D21F008ED9EC /* NoteCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		6666200424F2AD30008ED9EC /* DataDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
 		6666200724F2BDFB008ED9EC /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		6666200924F2C16D008ED9EC /* CollectionViewFooterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFooterReusableView.swift; sourceTree = "<group>"; };
+		6666200B24F2D21F008ED9EC /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				66661FFE24F2A6A4008ED9EC /* PulsanteCollectionViewCell.swift */,
 				6666200024F2A6BC008ED9EC /* ChartCollectionViewCell.swift */,
 				6666200224F2ABC2008ED9EC /* PositiviCollectionViewCell.swift */,
+				6666200B24F2D21F008ED9EC /* NoteCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				6666200124F2A6BC008ED9EC /* ChartCollectionViewCell.swift in Sources */,
 				66661FC824F23030008ED9EC /* SceneDelegate.swift in Sources */,
 				66661FF224F23FA9008ED9EC /* LoadingViewController.swift in Sources */,
+				6666200C24F2D21F008ED9EC /* NoteCollectionViewCell.swift in Sources */,
 				66661FEC24F23433008ED9EC /* ImpostazioniViewController.swift in Sources */,
 				6666200A24F2C16D008ED9EC /* CollectionViewFooterReusableView.swift in Sources */,
 				66661FF824F27304008ED9EC /* CovidData.swift in Sources */,

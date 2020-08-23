@@ -20,7 +20,7 @@ class CollectionViewFooterReusableView: UICollectionReusableView {
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
-        titleLabel.font = .boldSystemFont(ofSize: 15)
+        titleLabel.font = .systemFont(ofSize: 15)
         titleLabel.textAlignment = .center
     }
     

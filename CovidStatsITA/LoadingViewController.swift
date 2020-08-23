@@ -12,6 +12,8 @@ class LoadingViewController: UIViewController {
     
     private var appLogo = UIImageView()
     private var statusLabel = UILabel()
+    private var dataDownloader: DataDownloader!
+    private var downloadCounter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -60,18 +62,46 @@ class LoadingViewController: UIViewController {
     }
     
     private func loadData() {
-        let dataDownloader = DataDownloader(url: APIUrls.getUrl(forApiType: .italia))
+        dataDownloader = DataDownloader(downloadType: .italia)
         dataDownloader.delegate = self
         dataDownloader.start()
     }
 }
 
 extension LoadingViewController: DataDownloaderDelegate {
-    func didDownload(result: Bool, data: [Dictionary<String, Any>]) {
+    func didDownload(result: Bool, data: [Dictionary<String, Any>], forDownloadCase downloadCase: APIUrlsType) {
         DispatchQueue.main.async {
             if(result){
-                Model.shared.setItaData(from: data)
-                self.changeViewController()
+                self.downloadCounter = self.downloadCounter + 1
+                switch downloadCase {
+                case .italia:
+                    Model.shared.setItaData(from: data)
+                    self.dataDownloader = DataDownloader(downloadType: .regioni)
+                    self.dataDownloader.delegate = self
+                    self.dataDownloader.start()
+                    break
+                case .regioni:
+                    Model.shared.setRegioniData(from: data)
+                    self.dataDownloader = DataDownloader(downloadType: .province)
+                    self.dataDownloader.delegate = self
+                    self.dataDownloader.start()
+                    break
+                case .province:
+                    Model.shared.setProvinceData(from: data)
+                    self.dataDownloader = DataDownloader(downloadType: .note)
+                    self.dataDownloader.delegate = self
+                    self.dataDownloader.start()
+                    break
+                case .note:
+                    Model.shared.addNoteToItaData(from: data)
+                    break
+                default:
+                    break
+                }
+                
+                if(self.downloadCounter == 4){
+                    self.changeViewController()
+                }
             } else {
                 print("Errore nel download")
             }
