@@ -199,7 +199,14 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(indexPath.section==3){
-            print("Tap nota")
+            let customAlert = IconAlertController()
+                   customAlert.providesPresentationContextTransitionStyle = true
+                   customAlert.definesPresentationContext = true
+                   customAlert.modalPresentationStyle = .overFullScreen
+                   customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            customAlert.alertType = .warning
+            customAlert.setContent(content: Model.shared.getItaData().last!.note)
+                   self.present(customAlert, animated: true, completion: nil)
         } else if(indexPath.section == 4){
             print("Tap storico")
         }

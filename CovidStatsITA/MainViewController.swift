@@ -24,11 +24,13 @@ class MainViewController: UITabBarController {
         }
         
         italiaViewController.title = "Italia"
+        italiaViewController.tabBarItem.image = UIImage(named: "italia")!
        
         regioniViewController.title = "Regioni"
+        regioniViewController.tabBarItem.image = UIImage(named: "regioni")!
         
         impostazioniViewController.title = "Impostazioni"
-       
+        impostazioniViewController.tabBarItem.image = UIImage(named: "impostazioni")!
         
         self.viewControllers = [italiaViewController, regioniViewController, impostazioniViewController]
         
