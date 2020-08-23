@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ImpostazioniViewController.swift
 //  CovidStatsITA
 //
 //  Created by Matteo Visotto on 23/08/2020.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ImpostazioniViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Impostazioni"
         // Do any additional setup after loading the view.
     }
-
+    
 
 }
-
