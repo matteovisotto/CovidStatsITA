@@ -44,6 +44,7 @@
 		6666202A24F43301008ED9EC /* SettingsTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666202924F43301008ED9EC /* SettingsTableViewHeader.swift */; };
 		6666202C24F44BD1008ED9EC /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666202B24F44BD1008ED9EC /* SwitchTableViewCell.swift */; };
 		6666202E24F44F68008ED9EC /* LabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666202D24F44F68008ED9EC /* LabelTableViewCell.swift */; };
+		6666203024F45343008ED9EC /* StatusAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6666202F24F45343008ED9EC /* StatusAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		6666202924F43301008ED9EC /* SettingsTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewHeader.swift; sourceTree = "<group>"; };
 		6666202B24F44BD1008ED9EC /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		6666202D24F44F68008ED9EC /* LabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTableViewCell.swift; sourceTree = "<group>"; };
+		6666202F24F45343008ED9EC /* StatusAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				6666200D24F2D811008ED9EC /* IconAlerController.swift */,
+				6666202F24F45343008ED9EC /* StatusAlertController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				66661FEA24F23427008ED9EC /* RegioniViewController.swift in Sources */,
 				66661FF024F237CC008ED9EC /* MainViewController.swift in Sources */,
 				6666201324F2DEC2008ED9EC /* Regioni.swift in Sources */,
+				6666203024F45343008ED9EC /* StatusAlertController.swift in Sources */,
 				6666201124F2D836008ED9EC /* UIColorExtension.swift in Sources */,
 				66661FFA24F27A56008ED9EC /* AlertCollectionViewCell.swift in Sources */,
 				6666202324F3CE01008ED9EC /* DateSelectorController.swift in Sources */,
