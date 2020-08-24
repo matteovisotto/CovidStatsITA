@@ -50,7 +50,7 @@ class DataDownloader {
                 
             }
         }
-            
+        
         getTask.resume()
         
     }

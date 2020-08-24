@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class ImpostazioniViewController: UIViewController {
     
@@ -66,7 +67,7 @@ extension ImpostazioniViewController: UITableViewDelegate, UITableViewDataSource
         if (section == 0) {
             return 1
         } else {
-            return 1
+            return 2
         }
     }
     
@@ -75,14 +76,35 @@ extension ImpostazioniViewController: UITableViewDelegate, UITableViewDataSource
             let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.cellIdentifier, for: indexPath) as! SwitchTableViewCell
             cell.setCell(cellDescription: "Province al caricamento", target: self, selector: #selector(didProvinceSettingChangeState(uiSwitch:)), forEvent: .valueChanged, withDefaultState: UserDefaults.standard.bool(forKey: "loadProvince"))
             return cell
+        }else{
+            if(indexPath.row == 0){
+                let cell = tableView.dequeueReusableCell(withIdentifier: LabelTableViewCell.cellIdentifier, for: indexPath) as! LabelTableViewCell
+                cell.setCell(cellDescription: "Contatta lo sviluppatore", accessoryType: .disclosureIndicator)
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: LabelTableViewCell.cellIdentifier, for: indexPath) as! LabelTableViewCell
+                cell.setCell(cellDescription: "Informazioni", accessoryType: .disclosureIndicator)
+                return cell
+            }
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: LabelTableViewCell.cellIdentifier, for: indexPath) as! LabelTableViewCell
-        cell.setCell(cellDescription: "Informazioni", accessoryType: .disclosureIndicator)
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if(indexPath.section == 1){
+            if(indexPath.item == 0){
+                let mailComposeViewController = configureMailController()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailComposeViewController, animated: true, completion: nil)
+                } else {
+                    
+                }
+            } else if(indexPath.row == 1){
+                let infoVC = InfoViewController()
+                navigationController?.pushViewController(infoVC, animated: false)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -99,4 +121,22 @@ extension ImpostazioniViewController: UITableViewDelegate, UITableViewDataSource
         return nil
     }
     
+}
+
+extension ImpostazioniViewController: MFMailComposeViewControllerDelegate {
+    //Function to send an email
+    func configureMailController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["matteo.visotto@mail.polimi.it"])
+        mailComposerVC.setSubject("[CovidStatsITA]")
+        mailComposerVC.setMessageBody("", isHTML: true)
+        
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

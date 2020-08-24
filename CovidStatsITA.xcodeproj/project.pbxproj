@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6653D9CF24F45A9800EA0F48 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */; };
 		66661FC624F23030008ED9EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC524F23030008ED9EC /* AppDelegate.swift */; };
 		66661FC824F23030008ED9EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC724F23030008ED9EC /* SceneDelegate.swift */; };
 		66661FCA24F23030008ED9EC /* ItaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC924F23030008ED9EC /* ItaliaViewController.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		66661FC224F23030008ED9EC /* CovidStatsITA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CovidStatsITA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66661FC524F23030008ED9EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66661FC724F23030008ED9EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				66661FEB24F23433008ED9EC /* ImpostazioniViewController.swift */,
 				6666202024F3CD90008ED9EC /* StoricoItaliaViewController.swift */,
 				6666201E24F3CD80008ED9EC /* StoricoRegioneViewController.swift */,
+				6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */,
 				66661FCE24F23038008ED9EC /* Assets.xcassets */,
 				66661FD024F23038008ED9EC /* LaunchScreen.storyboard */,
 				66661FD324F23038008ED9EC /* Info.plist */,
@@ -388,6 +391,7 @@
 				6666201924F387D0008ED9EC /* RegioneCollectionViewCell.swift in Sources */,
 				66661FEC24F23433008ED9EC /* ImpostazioniViewController.swift in Sources */,
 				6666201524F2E380008ED9EC /* Provincia.swift in Sources */,
+				6653D9CF24F45A9800EA0F48 /* InfoViewController.swift in Sources */,
 				6666200A24F2C16D008ED9EC /* CollectionViewFooterReusableView.swift in Sources */,
 				6666202A24F43301008ED9EC /* SettingsTableViewHeader.swift in Sources */,
 				6666201724F2FE65008ED9EC /* CovidProvinciaData.swift in Sources */,
