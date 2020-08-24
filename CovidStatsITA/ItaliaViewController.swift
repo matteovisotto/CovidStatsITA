@@ -208,7 +208,9 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             customAlert.setContent(content: Model.shared.getItaData().last!.note)
                    self.present(customAlert, animated: true, completion: nil)
         } else if(indexPath.section == 4){
-            print("Tap storico")
+            let storico = StoricoItaliaViewController()
+            storico.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(storico, animated: false)
         }
     }
 }
@@ -218,11 +220,14 @@ extension ItaliaViewController: LineChartDelegate {
         let footerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: 1)) as! CollectionViewFooterReusableView
         footerView.setView(withTextConter: "\(yValues.first!) casi")
         
-        _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
-            DispatchQueue.main.async {
-                footerView.setView(withTextConter: "Picco: \(Model.shared.getItaPicco()) casi/24h")
+        if #available(iOS 10.0, *) {
+            _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
+                DispatchQueue.main.async {
+                    footerView.setView(withTextConter: "Picco: \(Model.shared.getItaPicco()) casi/24h")
+                }
             }
         }
     }
     
 }
+

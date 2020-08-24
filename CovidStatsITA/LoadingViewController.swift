@@ -17,7 +17,6 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // Do any additional setup after loading the view.
         loadData()
     }
     
@@ -82,9 +81,16 @@ extension LoadingViewController: DataDownloaderDelegate {
                     break
                 case .regioni:
                     Model.shared.setRegioniData(from: data)
-                    self.dataDownloader = DataDownloader(downloadType: .province)
-                    self.dataDownloader.delegate = self
-                    self.dataDownloader.start()
+                    if(UserDefaults.standard.bool(forKey: "loadProvince")){
+                        self.dataDownloader = DataDownloader(downloadType: .province)
+                        self.dataDownloader.delegate = self
+                        self.dataDownloader.start()
+                    } else {
+                        self.dataDownloader = DataDownloader(downloadType: .note)
+                        self.dataDownloader.delegate = self
+                        self.dataDownloader.start()
+                    }
+                    
                     break
                 case .province:
                     Model.shared.setProvinceData(from: data)
@@ -99,11 +105,24 @@ extension LoadingViewController: DataDownloaderDelegate {
                     break
                 }
                 
-                if(self.downloadCounter == 4){
-                    self.changeViewController()
+                if(UserDefaults.standard.bool(forKey: "loadProvince")){
+                    if(self.downloadCounter == 4){
+                        self.changeViewController()
+                    }
+                } else {
+                    if(self.downloadCounter == 3){
+                        self.changeViewController()
+                    }
                 }
             } else {
-                print("Errore nel download")
+               let customAlert = IconAlertController()
+               customAlert.providesPresentationContextTransitionStyle = true
+               customAlert.definesPresentationContext = true
+               customAlert.modalPresentationStyle = .overFullScreen
+               customAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+               customAlert.alertType = .danger
+               customAlert.setContent(content: "Si è verificato un errore nel download dei dati. Verifica la tua connessione internet oppure riprova più tardi.")
+               self.present(customAlert, animated: true, completion: nil)
             }
         }
         

@@ -29,7 +29,7 @@ class CovidData {
     var nuoviScreening: Int
     var totaleMorti: Int
     var nuoviMorti: Int
-    var note: String = ""
+    var note: String = String()
  
     init() {
         date = Date(timeIntervalSince1970: 1)

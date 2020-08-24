@@ -96,7 +96,7 @@ class DataCollectionViewCell: UICollectionViewCell {
             break
             
         case .morti:
-            dataTitle.text = "Morti"
+            dataTitle.text = "Deceduti"
             dataValue.text = "\(itaData.totaleMorti)"
             dataDelta.text = "+\(itaData.nuoviMorti)"
             if(itaData.nuoviMorti > 0) {
