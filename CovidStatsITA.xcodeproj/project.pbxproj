@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6653D9CF24F45A9800EA0F48 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */; };
+		6653D9D124F4D88F00EA0F48 /* StoricoProvinceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6653D9D024F4D88F00EA0F48 /* StoricoProvinceViewController.swift */; };
+		6653D9D324F4DEBA00EA0F48 /* ProvinciaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6653D9D224F4DEBA00EA0F48 /* ProvinciaCollectionViewCell.swift */; };
 		66661FC624F23030008ED9EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC524F23030008ED9EC /* AppDelegate.swift */; };
 		66661FC824F23030008ED9EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC724F23030008ED9EC /* SceneDelegate.swift */; };
 		66661FCA24F23030008ED9EC /* ItaliaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66661FC924F23030008ED9EC /* ItaliaViewController.swift */; };
@@ -60,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		6653D9D024F4D88F00EA0F48 /* StoricoProvinceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoricoProvinceViewController.swift; sourceTree = "<group>"; };
+		6653D9D224F4DEBA00EA0F48 /* ProvinciaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinciaCollectionViewCell.swift; sourceTree = "<group>"; };
 		66661FC224F23030008ED9EC /* CovidStatsITA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CovidStatsITA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66661FC524F23030008ED9EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66661FC724F23030008ED9EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				66661FEB24F23433008ED9EC /* ImpostazioniViewController.swift */,
 				6666202024F3CD90008ED9EC /* StoricoItaliaViewController.swift */,
 				6666201E24F3CD80008ED9EC /* StoricoRegioneViewController.swift */,
+				6653D9D024F4D88F00EA0F48 /* StoricoProvinceViewController.swift */,
 				6653D9CE24F45A9800EA0F48 /* InfoViewController.swift */,
 				66661FCE24F23038008ED9EC /* Assets.xcassets */,
 				66661FD024F23038008ED9EC /* LaunchScreen.storyboard */,
@@ -189,6 +194,7 @@
 				6666200224F2ABC2008ED9EC /* PositiviCollectionViewCell.swift */,
 				6666200B24F2D21F008ED9EC /* NoteCollectionViewCell.swift */,
 				6666201824F387D0008ED9EC /* RegioneCollectionViewCell.swift */,
+				6653D9D224F4DEBA00EA0F48 /* ProvinciaCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -389,6 +395,7 @@
 				66661FF224F23FA9008ED9EC /* LoadingViewController.swift in Sources */,
 				6666200C24F2D21F008ED9EC /* NoteCollectionViewCell.swift in Sources */,
 				6666201924F387D0008ED9EC /* RegioneCollectionViewCell.swift in Sources */,
+				6653D9D124F4D88F00EA0F48 /* StoricoProvinceViewController.swift in Sources */,
 				66661FEC24F23433008ED9EC /* ImpostazioniViewController.swift in Sources */,
 				6666201524F2E380008ED9EC /* Provincia.swift in Sources */,
 				6653D9CF24F45A9800EA0F48 /* InfoViewController.swift in Sources */,
@@ -398,6 +405,7 @@
 				66661FF824F27304008ED9EC /* CovidData.swift in Sources */,
 				6666202124F3CD90008ED9EC /* StoricoItaliaViewController.swift in Sources */,
 				66661FEA24F23427008ED9EC /* RegioniViewController.swift in Sources */,
+				6653D9D324F4DEBA00EA0F48 /* ProvinciaCollectionViewCell.swift in Sources */,
 				66661FF024F237CC008ED9EC /* MainViewController.swift in Sources */,
 				6666201324F2DEC2008ED9EC /* Regioni.swift in Sources */,
 				6666203024F45343008ED9EC /* StatusAlertController.swift in Sources */,

@@ -125,6 +125,15 @@ class Regione {
         return self.datiRegione
     }
     
+    public func getProvinceArray() -> [Provincia] {
+        var prov: [Provincia] = []
+        
+        for p in self.province.values {
+            prov.append(p)
+        }
+        return prov
+    }
+    
     public func getCovidData(forDate: Date) -> CovidData? {
            for d in datiRegione {
                if(Calendar.current.compare(d.date, to: forDate, toGranularity: .day) == .orderedSame  && Calendar.current.compare(d.date, to: forDate, toGranularity: .month) == .orderedSame && Calendar.current.compare(d.date, to: forDate, toGranularity: .year) == .orderedSame){

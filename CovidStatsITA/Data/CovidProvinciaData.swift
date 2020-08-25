@@ -12,9 +12,9 @@ class CovidProvinciaData {
     
     static let zero = CovidProvinciaData()
     
-    var date: Date!
-    var totalePositivi: Int!
-    var nuoviPositivi: Int!
+    var date: Date
+    var totalePositivi: Int
+    var nuoviPositivi: Int
     
     init() {
         date = Date(timeIntervalSince1970: 1)

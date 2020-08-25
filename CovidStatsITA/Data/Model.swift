@@ -12,6 +12,7 @@ class Model {
     public static let shared: Model = Model()
     
     private var nuovoBollettino: Bool = false
+    private var provinceDownloaded: Bool = false
     private var italia: [CovidData] = []
     private var piccoItalia: Int = 0
     
@@ -132,6 +133,7 @@ class Model {
                 regione.addProvinciaData(data: data)
             }
         }
+        self.provinceDownloaded = true
     }
     
     private func calcolaPicco() {
@@ -146,5 +148,9 @@ class Model {
     
     public func getItaPicco() -> Int {
         return self.piccoItalia
+    }
+    
+    public func isProvinceDownloaded() -> Bool {
+        return self.provinceDownloaded
     }
 }

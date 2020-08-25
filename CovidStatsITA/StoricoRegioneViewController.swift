@@ -49,7 +49,7 @@ class StoricoRegioneViewController: UIViewController {
     extension StoricoRegioneViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         
         func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return 3
+            return 4
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -108,9 +108,13 @@ class StoricoRegioneViewController: UIViewController {
                     cell.setData(itaData: self.regione.getCovidData(forDate: self.currentDate) ?? CovidData.zero, cellType: .positivi)
                 }
                 return cell
-            } else {
+            } else if(indexPath.section == 0){
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionViewCell.cellIdentifier, for: indexPath) as! ChartCollectionViewCell
                 cell.setData(covidData: self.regione.getCovidData(), target: self)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulsanteCollectionViewCell.cellIdentifier, for: indexPath) as! PulsanteCollectionViewCell
+                cell.setButton(text: "Dati province")
                 return cell
             }
         }
@@ -125,8 +129,10 @@ class StoricoRegioneViewController: UIViewController {
                 } else {
                     return CGSize(width: collectionView.frame.width/2-20, height: 150)
                 }
-            } else {
+            } else if(indexPath.section == 0){
                 return CGSize(width: collectionView.frame.width-20, height: 200)
+            } else {
+                return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4-20)
             }
         }
         
@@ -144,6 +150,11 @@ class StoricoRegioneViewController: UIViewController {
                 dateSelector.modalPresentationStyle = .overFullScreen
                 dateSelector.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                 self.present(dateSelector, animated: true, completion: nil)
+             } else if(indexPath.section == 3) {
+                let storicoProvinceVC = StoricoProvinceViewController()
+                storicoProvinceVC.hidesBottomBarWhenPushed = true
+                storicoProvinceVC.regione = self.regione
+                navigationController?.pushViewController(storicoProvinceVC, animated: false)
             }
         }
     }

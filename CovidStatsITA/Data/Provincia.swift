@@ -31,4 +31,12 @@ class Provincia {
     func getCovidData() -> [CovidProvinciaData] {
         return self.covidData
     }
+    public func getCovidData(forDate: Date) -> CovidProvinciaData? {
+               for d in covidData {
+                   if(Calendar.current.compare(d.date, to: forDate, toGranularity: .day) == .orderedSame  && Calendar.current.compare(d.date, to: forDate, toGranularity: .month) == .orderedSame && Calendar.current.compare(d.date, to: forDate, toGranularity: .year) == .orderedSame){
+                       return d
+                   }
+               }
+               return nil
+    }
 }
