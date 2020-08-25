@@ -16,6 +16,7 @@ class StoricoProvinceViewController: UIViewController {
     private var currentDate: Date!
     private var availableDates: [Date]!
     private var province: [Provincia] = []
+    private var activityView: ActivityView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,9 @@ class StoricoProvinceViewController: UIViewController {
     private func loadData() {
         if(!UserDefaults.standard.bool(forKey: "loadProvince") && !Model.shared.isProvinceDownloaded()) {
             //Call data tast
+            activityView = ActivityView(frame: self.view.frame)
+            activityView!.setContent(content: "Caricamento dati in corso")
+            self.view.addSubview(activityView!)
             let downloadTask = DataDownloader(downloadType: .province)
             downloadTask.delegate = self
             downloadTask.start()
@@ -112,6 +116,7 @@ extension StoricoProvinceViewController: DataDownloaderDelegate {
         DispatchQueue.main.async {
             Model.shared.setProvinceData(from: data)
             self.province = self.regione.getProvinceArray()
+            self.activityView?.removeFromSuperview()
             self.collectionView.reloadData()
         }
         
