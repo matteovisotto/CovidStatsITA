@@ -57,14 +57,13 @@ class DataDownloader {
     
     private func dataToJSON(data: Data) -> [Dictionary<String,Any>] {
         var decodedData: [Dictionary<String,Any>] = []
-        let dataString = String(data: data, encoding: .isoLatin1)
-        let data1 = dataString!.data(using: .utf8)!
+        
         do {
             
-            if let jsonArray = try JSONSerialization.jsonObject(with: data1, options : .allowFragments) as? [Dictionary<String,Any>]
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? [Dictionary<String,Any>]
             {
                 decodedData=jsonArray
-            } else if let jsonData = try JSONSerialization.jsonObject(with: data1, options: .allowFragments) as? Dictionary<String,Any> {
+            } else if let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String,Any> {
                 decodedData.append(jsonData)
             } else {
                 self.delegate?.didDownload(result: false, data: [], forDownloadCase: self.downloadType)

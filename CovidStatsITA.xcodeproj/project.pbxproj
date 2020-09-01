@@ -572,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 2FE7MP24X8;
 				INFOPLIST_FILE = CovidStatsITA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -582,7 +583,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.matteovisotto.CovidStatsITA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -591,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 2FE7MP24X8;
 				INFOPLIST_FILE = CovidStatsITA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -601,7 +603,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = it.matteovisotto.CovidStatsITA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

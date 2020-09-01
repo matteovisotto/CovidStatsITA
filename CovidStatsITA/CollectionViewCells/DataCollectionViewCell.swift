@@ -115,7 +115,7 @@ class DataCollectionViewCell: UICollectionViewCell {
             dataTitle.text = "Ricoverati"
             dataValue.text = "\(itaData.totaleRicoverati)"
             
-            if(itaData.variazionePositivi > 0) {
+            if(itaData.nuoviRicoverati > 0) {
                 dataDelta.textColor = .red
                 dataDelta.text = "+\(itaData.nuoviRicoverati)"
             } else {
