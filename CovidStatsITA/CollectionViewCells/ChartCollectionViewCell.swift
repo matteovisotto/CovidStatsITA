@@ -69,6 +69,14 @@ class ChartCollectionViewCell: UICollectionViewCell {
         }
         lineChart.delegate = target
         lineChart.y.grid.count = 5
+        /*if(UserDefaults.standard.bool(forKey: "italiaMidValue")) {
+           lineChart.midValue = true
+        } else {
+            lineChart.midValue = false
+        }*/
+        lineChart.midValue = true
+        
         lineChart.addLine(data)
+        
     }
 }

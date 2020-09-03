@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Model {
     public static let shared: Model = Model()
@@ -15,6 +16,7 @@ class Model {
     private var provinceDownloaded: Bool = false
     private var italia: [CovidData] = []
     private var piccoItalia: Int = 0
+    private var mediaItaliana: CGFloat = 0
     
     private var regioni: Dictionary<Int, Regione> = [:]
     
@@ -68,6 +70,7 @@ class Model {
             self.nuovoBollettino = true
         }
         calcolaPicco()
+        calculateMidVal()
     }
     
     public func addNoteToItaData(from dataDictionary: [Dictionary<String,Any>]){
@@ -146,8 +149,25 @@ class Model {
         piccoItalia = picco
     }
     
+    fileprivate func calculateMidVal(){
+        var sum: CGFloat = 0
+        for i in self.italia {
+            sum = sum + CGFloat(i.nuoviPositivi)
+          }
+        self.mediaItaliana = CGFloat(sum/CGFloat(self.italia.count))
+    }
+    
     public func getItaPicco() -> Int {
         return self.piccoItalia
+    }
+    
+    public func getMediaNazionale() -> CGFloat {
+        return self.mediaItaliana
+    }
+    
+    public func getMediaNazionaleString(withDecimal: Int) -> String {
+        let format = "%.\(withDecimal)f"
+        return String(format: format, self.getMediaNazionale())
     }
     
     public func isProvinceDownloaded() -> Bool {

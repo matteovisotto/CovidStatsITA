@@ -95,6 +95,7 @@ open class LineChart: UIView {
     
     // default configuration
     open var area: Bool = true
+    open var midValue: Bool = false
     open var animation: Animation = Animation()
     open var dots: Dots = Dots()
     open var lineWidth: CGFloat = 2
@@ -127,6 +128,8 @@ open class LineChart: UIView {
     
     // data stores
     fileprivate var dataStore: [[CGFloat]] = []
+    fileprivate var midVal: CGFloat = -10
+    fileprivate var alreadyMid: Bool = false
     fileprivate var dotsDataStore: [[DotCALayer]] = []
     fileprivate var lineLayerStore: [CAShapeLayer] = []
     
@@ -400,6 +403,27 @@ open class LineChart: UIView {
             xValue = self.x.scale(CGFloat(index)) + x.axis.inset
             yValue = self.bounds.height - self.y.scale(data[index]) - y.axis.inset
             path.addLine(to: CGPoint(x: xValue, y: yValue))
+            if(!self.alreadyMid && ((index==data.count-1 && data[index] <= self.midVal) || (data[index] <= self.midVal && data[index+1]>self.midVal && self.midValue))) {
+                let midPath = UIBezierPath()
+                midPath.move(to: CGPoint(x: self.x.scale(0) + x.axis.inset, y: yValue))
+                midPath.addLine(to: CGPoint(x: self.x.scale(CGFloat(data.count-1))+x.axis.inset, y: yValue))
+                let midLayer = CAShapeLayer()
+                midLayer.frame = self.bounds
+                midLayer.path = midPath.cgPath
+                midLayer.strokeColor = UIColor.red.cgColor
+                midLayer.fillColor = nil
+                midLayer.lineWidth = lineWidth
+                self.alreadyMid = true
+                self.layer.addSublayer(midLayer)
+                if animation.enabled {
+                    let anim = CABasicAnimation(keyPath: "strokeEnd")
+                    anim.duration = animation.duration
+                    anim.fromValue = 0
+                    anim.toValue = 1
+                    midLayer.add(anim, forKey: "strokeEnd")
+                }
+                lineLayerStore.append(midLayer)
+            }
         }
         
         let layer = CAShapeLayer()
@@ -470,8 +494,7 @@ open class LineChart: UIView {
         }
         path.stroke()
     }
-    
-    
+   
     
     /**
      * Draw y grid.
@@ -491,6 +514,9 @@ open class LineChart: UIView {
         path.stroke()
     }
     
+    fileprivate func drawMidYValue() {
+        
+    }
     
     
     /**
@@ -547,16 +573,25 @@ open class LineChart: UIView {
     }
     
     
+    /**
+        Calculate mid value
+     */
+    fileprivate func calculateMidVal(forData: [CGFloat]){
+        var sum: CGFloat = 0
+        for i in forData {
+            sum = sum + i
+        }
+        self.midVal = CGFloat(sum/CGFloat(forData.count))
+    }
     
     /**
      * Add line chart
      */
     open func addLine(_ data: [CGFloat]) {
         self.dataStore.append(data)
+        calculateMidVal(forData: data)
         self.setNeedsDisplay()
     }
-    
-    
     
     /**
      * Make whole thing white again.

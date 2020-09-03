@@ -21,6 +21,11 @@ class ItaliaViewController: UIViewController {
         collectionView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
+    
     private func setupUI() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -161,6 +166,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let valoreDiPicco = Model.shared.getItaPicco()
+        let mediaNazionale = Model.shared.getMediaNazionaleString(withDecimal: 2)
         if(kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewReusableView.viewIdentifier, for: indexPath) as! CollectionViewReusableView
             if(indexPath.section == 1) {
@@ -175,7 +181,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
         } else {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewFooterReusableView.viewIdentifier, for: indexPath) as! CollectionViewFooterReusableView
             if(indexPath.section == 1){
-                footerView.setView(withTextConter: "Picco: \(valoreDiPicco) casi/24h")
+                footerView.setView(withTextConter: "Picco: \(valoreDiPicco) casi/24h; Media: \(mediaNazionale)")
             } else {
                 footerView.setView(withTextConter: "")
             }
@@ -223,7 +229,7 @@ extension ItaliaViewController: LineChartDelegate {
         if #available(iOS 10.0, *) {
             _ = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
                 DispatchQueue.main.async {
-                    footerView.setView(withTextConter: "Picco: \(Model.shared.getItaPicco()) casi/24h")
+                    footerView.setView(withTextConter: "Picco: \(Model.shared.getItaPicco()) casi/24h; Media: \(Model.shared.getMediaNazionaleString(withDecimal: 2))")
                 }
             }
         }

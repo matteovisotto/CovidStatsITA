@@ -55,19 +55,23 @@ class ImpostazioniViewController: UIViewController {
         UserDefaults.standard.set(uiSwitch.isOn, forKey: "loadProvince")
     }
     
+    @objc private func didMidvalueSettingChangeState(sender: UISwitch) {
+        UserDefaults.standard.set(sender.isOn, forKey: "italiaMidValue")
+    }
+    
 }
 
 extension ImpostazioniViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
-            return 1
-        } else {
+        if (section == 2) {
             return 2
+        } else {
+            return 1
         }
     }
     
@@ -75,6 +79,14 @@ extension ImpostazioniViewController: UITableViewDelegate, UITableViewDataSource
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.cellIdentifier, for: indexPath) as! SwitchTableViewCell
             cell.setCell(cellDescription: "Province al caricamento", target: self, selector: #selector(didProvinceSettingChangeState(uiSwitch:)), forEvent: .valueChanged, withDefaultState: UserDefaults.standard.bool(forKey: "loadProvince"))
+            return cell
+        } else if(indexPath.section == 1) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.cellIdentifier, for: indexPath) as! SwitchTableViewCell
+            cell.setCell(cellDescription: "Mostra media", target: self, selector: #selector(didMidvalueSettingChangeState(sender:)), forEvent: .valueChanged, withDefaultState:
+                true)
+            //Add as default state UserDefaults.standard.bool(forKey: "italiaMidValue")
+            cell.isUserInteractionEnabled = false
+            cell.switchControl.isEnabled = false
             return cell
         }else{
             if(indexPath.row == 0){
