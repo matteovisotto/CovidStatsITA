@@ -74,9 +74,11 @@ class ChartCollectionViewCell: UICollectionViewCell {
         } else {
             lineChart.midValue = false
         }*/
-        lineChart.midValue = true
+        lineChart.midValue = false
         
         lineChart.addLine(data)
         
     }
+    
+    
 }
