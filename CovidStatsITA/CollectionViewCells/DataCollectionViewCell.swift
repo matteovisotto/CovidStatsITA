@@ -98,11 +98,13 @@ class DataCollectionViewCell: UICollectionViewCell {
         case .morti:
             dataTitle.text = "Deceduti"
             dataValue.text = "\(itaData.totaleMorti)"
-            dataDelta.text = "+\(itaData.nuoviMorti)"
+            
             if(itaData.nuoviMorti > 0) {
                 dataDelta.textColor = .red
+                dataDelta.text = "+\(itaData.nuoviMorti)"
             } else {
                 dataDelta.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+                dataDelta.text = "\(itaData.nuoviMorti)"
             }
             break
         case .tamponi:

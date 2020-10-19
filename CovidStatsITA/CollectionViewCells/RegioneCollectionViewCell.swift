@@ -68,6 +68,11 @@ class RegioneCollectionViewCell: UICollectionViewCell {
     func setRegione(regione: Regione) {
         self.nomeRegione.text = regione.nome
         self.nuoviPositivi.text = "Positivi: +\(regione.getCovidData().last!.nuoviPositivi)"
-        self.nuoviMorti.text = "Deceduti: +\(regione.getCovidData().last!.nuoviMorti)"
+        if(regione.getCovidData().last!.nuoviMorti>0){
+            self.nuoviMorti.text = "Deceduti: +\(regione.getCovidData().last!.nuoviMorti)"
+        } else {
+            self.nuoviMorti.text = "Deceduti: \(regione.getCovidData().last!.nuoviMorti)"
+        }
+       
     }
 }
