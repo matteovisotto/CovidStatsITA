@@ -12,9 +12,14 @@ Le principali funzionalità sono:
 * Possiblità di visualizzare i dati dei giorni precedenti (italia, regioni e province)
 
 ### Screen
-![Home](screen/Home.png)
-![Home2](screen/Home2.png)
-![Regioni](screen/Regioni.png)
+<table>
+  <tr>
+    <td><img src="screen/Home.png" height="700px"/></td>
+    <td><img src="screen/Home2.png" height="700px"/></td>
+    <td><img src="screen/Regioni.png" height="700px"/></td>
+  </tr>
+</table>
+
 
 _Applicazione in continuo aggiornamento_
 
