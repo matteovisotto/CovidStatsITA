@@ -14,9 +14,9 @@ Le principali funzionalità sono:
 ### Screen
 <table>
   <tr>
-    <td><img src="screen/Home.png" height="700px"/></td>
-    <td><img src="screen/Home2.png" height="700px"/></td>
-    <td><img src="screen/Regioni.png" height="700px"/></td>
+    <td><img src="screen/Home.png" height="600px"/></td>
+    <td><img src="screen/Home2.png" height="600px"/></td>
+    <td><img src="screen/Regioni.png" height="600px"/></td>
   </tr>
 </table>
 
