@@ -42,6 +42,7 @@ class StoricoItaliaViewController: UIViewController {
         collectionView.register(PositiviCollectionViewCell.self, forCellWithReuseIdentifier: PositiviCollectionViewCell.cellIdentifier)
         collectionView.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.cellIdentifier)
         collectionView.register(PulsanteCollectionViewCell.self, forCellWithReuseIdentifier: PulsanteCollectionViewCell.cellIdentifier)
+        collectionView.register(PercentCollectionViewCell.self, forCellWithReuseIdentifier: PercentCollectionViewCell.cellIdentifier)
     }
     
 }
@@ -57,7 +58,7 @@ extension StoricoItaliaViewController: UICollectionViewDelegate, UICollectionVie
             return 1
         } else if(section == 1){
             if(Model.shared.getItaData().count>0){
-                return 9
+                return 10
             }
             return 0
         } else {
@@ -80,31 +81,35 @@ extension StoricoItaliaViewController: UICollectionViewDelegate, UICollectionVie
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositiviCollectionViewCell.cellIdentifier, for: indexPath) as! PositiviCollectionViewCell
                 cell.setData(nuoviPositivi: Model.shared.getItaData(forDate: self.currentDate)?.nuoviPositivi ?? CovidData.zero.nuoviPositivi)
                 return cell
+            } else if (indexPath.item == 1){
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PercentCollectionViewCell.cellIdentifier, for: indexPath) as! PercentCollectionViewCell
+                cell.setData(covidData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero)
+                return cell
             }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionViewCell.cellIdentifier, for: indexPath) as! DataCollectionViewCell
             switch indexPath.item {
-            case 1:
+            case 2:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .positivi)
                 break
-            case 2:
+            case 3:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .morti)
                 break
-            case 3:
+            case 4:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .terapieIntensive)
                 break
-            case 4:
+            case 5:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .tamponi)
                 break
-            case 5:
+            case 6:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .dimessi)
                 break
-            case 6:
+            case 7:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .ricoveri)
                 break
-            case 7:
+            case 8:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .diagnostico)
                 break
-            case 8:
+            case 9:
                 cell.setData(itaData: Model.shared.getItaData(forDate: self.currentDate) ?? CovidData.zero, cellType: .screening)
                 break
             default:
@@ -124,7 +129,7 @@ extension StoricoItaliaViewController: UICollectionViewDelegate, UICollectionVie
             return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4-20)
         }
         if(indexPath.section == 1){
-            if(indexPath.item == 0){
+            if(indexPath.item == 0 || indexPath.item == 1){
                 return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4)
             } else {
                 return CGSize(width: collectionView.frame.width/2-20, height: 150)

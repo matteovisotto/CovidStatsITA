@@ -45,6 +45,8 @@ class ItaliaViewController: UIViewController {
         collectionView.register(PulsanteCollectionViewCell.self, forCellWithReuseIdentifier: PulsanteCollectionViewCell.cellIdentifier)
         collectionView.register(PositiviCollectionViewCell.self, forCellWithReuseIdentifier: PositiviCollectionViewCell.cellIdentifier)
         collectionView.register(NoteCollectionViewCell.self, forCellWithReuseIdentifier: NoteCollectionViewCell.cellIdentifier)
+        collectionView.register(PercentChartCollectionViewCell.self, forCellWithReuseIdentifier: PercentChartCollectionViewCell.cellIdentifier)
+        collectionView.register(PercentCollectionViewCell.self, forCellWithReuseIdentifier: PercentCollectionViewCell.cellIdentifier)
     }
     
 }
@@ -52,7 +54,7 @@ class ItaliaViewController: UIViewController {
 extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 5
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,11 +67,13 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
         } else if(section == 1){
             return 1
         } else if(section == 2){
+            return 1
+        } else if(section == 3){
             if(Model.shared.getItaData().count>0){
-                return 9
+                return 10
             }
             return 0
-        } else if(section == 3) {
+        } else if(section == 4) {
             if(Model.shared.getItaData().last!.note == "") {
                 return 0
             }
@@ -92,44 +96,53 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.setData(covidData: Model.shared.getItaData(), target: self)
             return cell
         } else if(indexPath.section == 2){
+            // % positivi-tamponi
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PercentChartCollectionViewCell.cellIdentifier, for: indexPath) as! PercentChartCollectionViewCell
+            cell.setData(covidData: Model.shared.getItaData(), target: self)
+            return cell
+        } else if(indexPath.section == 3){
             //Bollettino
             if(indexPath.item == 0){
                 //Nuovi positivi
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PositiviCollectionViewCell.cellIdentifier, for: indexPath) as! PositiviCollectionViewCell
                 cell.setData(nuoviPositivi: Model.shared.getItaData().last!.nuoviPositivi)
                 return cell
+            } else if(indexPath.item == 1){
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PercentCollectionViewCell.cellIdentifier, for: indexPath) as! PercentCollectionViewCell
+                cell.setData(covidData: Model.shared.getItaData().last!)
+                return cell
             }
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionViewCell.cellIdentifier, for: indexPath) as! DataCollectionViewCell
             switch indexPath.item {
-            case 1:
+            case 2:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .positivi)
                 break
-            case 2:
+            case 3:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .morti)
                 break
-            case 3:
+            case 4:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .terapieIntensive)
                 break
-            case 4:
+            case 5:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .tamponi)
                 break
-            case 5:
+            case 6:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .dimessi)
                 break
-            case 6:
+            case 7:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .ricoveri)
                 break
-            case 7:
+            case 8:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .diagnostico)
                 break
-            case 8:
+            case 9:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .screening)
                 break
             default:
                 cell.setData(itaData: Model.shared.getItaData().last!, cellType: .positivi)
             }
             return cell
-        } else if(indexPath.section == 3) {
+        } else if(indexPath.section == 4) {
             //Note
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoteCollectionViewCell.cellIdentifier, for: indexPath) as! NoteCollectionViewCell
             cell.setNote(text: Model.shared.getItaData().last!.note)
@@ -145,15 +158,15 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if(indexPath.section == 0){
             return CGSize(width: collectionView.frame.width-20, height: 120)
-        } else if(indexPath.section == 1) {
+        } else if(indexPath.section == 1 || indexPath.section == 2) {
             return CGSize(width: collectionView.frame.width-20, height: 200)
-        } else if(indexPath.section == 2){
-            if(indexPath.item == 0){
+        } else if(indexPath.section == 3){
+            if(indexPath.item == 0 || indexPath.item == 1){
                 return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4)
             } else {
                 return CGSize(width: collectionView.frame.width/2-20, height: 150)
             }
-        } else if(indexPath.section == 3) {
+        } else if(indexPath.section == 4) {
             return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/3-20)
         } else {
             return CGSize(width: collectionView.frame.width-20, height: collectionView.frame.width/4-20)
@@ -171,7 +184,9 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CollectionViewReusableView.viewIdentifier, for: indexPath) as! CollectionViewReusableView
             if(indexPath.section == 1) {
                 headerView.setView(withHeaderTitle: "Andamento totale")
-            } else if(indexPath.section == 2){
+            } else if(indexPath.section == 2) {
+                headerView.setView(withHeaderTitle: "% positivi - tamponi")
+            } else if(indexPath.section == 3){
                 headerView.setView(withHeaderTitle: "L'ultimo bollettino")
             } else {
                 headerView.setView(withHeaderTitle: "")
@@ -190,7 +205,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if(section == 1 || section == 2){
+        if(section == 1 || section == 2 || section == 3){
            return CGSize(width: collectionView.frame.width, height: 50)
         }
         return CGSize(width: collectionView.frame.width, height: 0)
@@ -204,7 +219,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if(indexPath.section==3){
+        if(indexPath.section==4){
             let customAlert = IconAlertController()
                    customAlert.providesPresentationContextTransitionStyle = true
                    customAlert.definesPresentationContext = true
@@ -213,7 +228,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             customAlert.alertType = .warning
             customAlert.setContent(content: Model.shared.getItaData().last!.note)
                    self.present(customAlert, animated: true, completion: nil)
-        } else if(indexPath.section == 4){
+        } else if(indexPath.section == 5){
             let storico = StoricoItaliaViewController()
             storico.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(storico, animated: false)
