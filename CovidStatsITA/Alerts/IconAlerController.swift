@@ -47,7 +47,7 @@ class IconAlertController: UIViewController {
     }
     
     private var containerView = UIView()
-    private var contentLabel = UILabel()
+    private var contentLabel = UITextView()
     private var badgeImage = UIImageView()
     private var imageContainer = UIView()
     private var dismissButton = UIButton()
@@ -65,6 +65,7 @@ class IconAlertController: UIViewController {
         containerView.widthAnchor.constraint(equalToConstant: self.view.frame.width-35).isActive = true
         containerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 30).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: self.view.frame.height - 200).isActive = true
         containerView.layer.cornerRadius = 10
         containerView.layer.borderWidth = 2
         if #available(iOS 13.0, *) {
@@ -100,8 +101,9 @@ class IconAlertController: UIViewController {
         contentLabel.topAnchor.constraint(equalTo: badgeImage.bottomAnchor, constant: 15).isActive = true
         contentLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 15).isActive = true
         contentLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -15).isActive = true
-        contentLabel.numberOfLines = 0
+        contentLabel.isEditable = false
         contentLabel.textAlignment = .justified
+        contentLabel.font = .systemFont(ofSize: 14)
         
         containerView.addSubview(dismissButton)
         dismissButton.translatesAutoresizingMaskIntoConstraints = false

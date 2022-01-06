@@ -58,7 +58,7 @@ extension StoricoItaliaViewController: UICollectionViewDelegate, UICollectionVie
             return 1
         } else if(section == 1){
             if(Model.shared.getItaData().count>0){
-                return 10
+                return 8
             }
             return 0
         } else {

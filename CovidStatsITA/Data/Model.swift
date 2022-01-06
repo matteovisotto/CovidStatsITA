@@ -82,7 +82,7 @@ class Model {
             let date = dateFormatter.date(from: data["data"] as! String)!
             for ita in italia {
                 if(Calendar.current.compare(date, to: ita.date, toGranularity: .day) == .orderedSame && Calendar.current.compare(date, to: ita.date, toGranularity: .month) == .orderedSame && Calendar.current.compare(date, to: ita.date, toGranularity: .year) == .orderedSame) {
-                    ita.note = data["note"] as! String
+                    ita.note = (data["note"] as? String) ?? ""
                 }
             }
         }

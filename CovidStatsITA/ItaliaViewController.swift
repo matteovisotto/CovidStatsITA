@@ -70,7 +70,7 @@ extension ItaliaViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return 1
         } else if(section == 3){
             if(Model.shared.getItaData().count>0){
-                return 10
+                return 8
             }
             return 0
         } else if(section == 4) {
